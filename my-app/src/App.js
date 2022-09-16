@@ -1,23 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header'
 
+const test = 'Vasya'
+const users = [
+    {
+        name: 'Vasya',
+        age: 10 ,
+        gender: true,
+    },
+    {
+        name: 'Petya',
+        age: 30 ,
+        gender: true,
+    },
+    {
+        name: 'Masha',
+        age: 15 ,
+        gender: false,
+    },
+]
 function App() {
+    const getName = (e) => {
+        console.log(e)
+        e.target.style.color = '#000'
+    }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Header title='Header'/>
+        <ul>
+            {users.map((elem,key) =>
+                 <li onClick={(e) => getName(e)} key={key} className={elem.gender ? 'name-boy': 'name-girl'}>{elem.name} - {elem.age}</li>
+
+            )}
+        </ul>
     </div>
   );
 }
